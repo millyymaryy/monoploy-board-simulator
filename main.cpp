@@ -62,7 +62,7 @@ int rent;
     void print() {
         /* TODO: Define print here */
         // Example style:
-        // cout << propertyName << " | " << propertyColor << " | $" << value << " | Rent " << rent;
+         cout << propertyName << " | " << propertyColor << " | $" << value << " | Rent " << rent;
         // Ex (what the output would look like:) hollyword | red | $20 | Rent 5
     }
 };
@@ -80,8 +80,6 @@ Node<T>* nextNode;
         data = value;
         nextNode = nullptr;
     }
-//code here??-from jackson
-
 };
 
 // -------------------------------
@@ -148,6 +146,7 @@ playerNode = nullptr;
         tailNode->nextNode = headNode;
         }
         nodeCount++;
+    return true;
     }
 
     // -------------------------------
@@ -159,9 +158,16 @@ playerNode = nullptr;
         // - Stop exactly when you reach MAX_SPACES
         // - Return number successfully added
         // - Do not corrupt pointers if capacity is exceeded
-        cout << "addMany unwritten" << endl;
-        return 0;
+    int add = 0;
+    for (int i=0;i<(int)values.size() && nodeCount < MAX_SPACES;i++) {
+        if (addSpace(values[i])) {
+            add++;
+        }
+        else {
+            return add;
+        }
     }
+}
 
     // -------------------------------
     // Core C: Traversal-Based Player Movement
@@ -321,12 +327,6 @@ srand(static_cast<unsigned>(time(nullptr)));
     board.addSpace(MonopolySpace("H", "Pink", 5, 1));
     board.addSpace(MonopolySpace("I", "Purple", 10, 2));
     board.addSpace(MonopolySpace("J", "Blue", 15, 3));
-
-    /*Node<MonopolySpace>* temp = board.getHead();
-    for(int i = 0; i < 7; i++){
-    cout<<temp->data.getName()<<endl;
-    temp = temp->nextNode;
-    }*/
 
     return 0;
 }

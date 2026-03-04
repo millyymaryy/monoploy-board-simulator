@@ -179,12 +179,16 @@ playerNode = nullptr;
         // - Detect and track passing GO:
         //   increment passGoCount when a move crosses from tail back to head
         // - Must handle empty list safely
-        cout << "movePlayer unwritten" << endl;
-    }
-
-    int getPassGoCount() {
-        return passGoCount;
-    }
+        if (playerNode == nullptr) {
+            return;
+        }
+        for (int i = 0; i <steps; i++) {
+            if (playerNode->nextNode == headNode) {
+                passGoCount++;
+            }
+            playerNode = playerNode->nextNode;
+        }
+}
 
     // -------------------------------
     // Core D: Controlled Board Display

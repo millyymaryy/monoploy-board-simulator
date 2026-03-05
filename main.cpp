@@ -238,8 +238,42 @@ playerNode = nullptr;
         // - Maintain circular link tail->next=head
         // - If playerNode points to deleted node, move playerNode to a safe node
         // - nodeCount--
-        cout << "removeByName unwritten" << endl;
+    if (headNode == nullptr) {
         return false;
+    }
+    Node<T>* curr = headNode;
+    Node<T>* prev = tailNode;
+
+    do {
+        if (curr->data.getName() == name) {
+            // Case 1: only one node in the list
+            if ( curr == headNode && curr == tailNode) {
+                if (playerNode == curr) {
+                    playerNode = nullptr;
+                }
+                delete curr;
+                headNode = nullptr;
+                tailNode = nullptr;
+                nodeCount--;
+                return true;
+            }
+            if (playerNode == curr) {
+                playerNode = curr->nextNode;
+            }
+            // Case 2: deleting head
+            if (curr == headNode) {
+                headNode = headNode->nextNode;
+                tailNode->nextNode = headNode;
+            }
+            // Case 3: deleting tail
+            if (curr == tailNode) {
+                tailNode = prev;
+                tailNode->nextNode = headNode;
+            }
+
+        }
+    }
+
     }
 
     // -------------------------------

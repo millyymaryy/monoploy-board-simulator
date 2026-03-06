@@ -179,14 +179,14 @@ playerNode = nullptr;
         // - Detect and track passing GO:
         //   increment passGoCount when a move crosses from tail back to head
         // - Must handle empty list safely
-        if (playerNode == nullptr) {
+        if (playerNode == nullptr) { //empty list
             return;
         }
         for (int i = 0; i <steps; i++) {
             if (playerNode->nextNode == headNode) {
                 passGoCount++;
             }
-            playerNode = playerNode->nextNode;
+            playerNode = playerNode->nextNode; // playerNode = the next node 
         }
 }
 
@@ -199,13 +199,13 @@ playerNode = nullptr;
         // - Must not infinite loop
         // - Must handle empty list
         // - Output must be deterministic and readable
-        if (playerNode == nullptr) {
+        if (playerNode == nullptr) { //empty list
             return;
         }
-        Node<T>* currentNode = playerNode;
-        for (int i = 0; i < count; i++) {
-            cout << currentNode->data << endl;
-            currentNode = currentNode->nextNode;
+        Node<T>* curr = playerNode; // curr points to player node
+        for (int i = 0; i < count; i++) { // start at i = 0, then if i is less than count inc by 1
+            curr->data.print(); // print curr next node's data
+            curr = curr->nextNode; // curr now equals the next node
         }
     }
 
@@ -213,14 +213,16 @@ playerNode = nullptr;
     void printBoardOnce() {
         // TODO:
         // - Traverse exactly one full cycle and print each node
-        if (headNode == nullptr) {
+        if (headNode == nullptr) { //empty list
+            cout >> "Board is empty" << endl;
             return;
         }
-        Node<T>* temp = headNode;
-        temp->data.print();
-        while (temp != headNode) {
-            temp->data.print();
-            temp = temp->nextNode;
+        Node<T>* curr = headNode; // curr points to the head node
+        curr->data.print(); // print out the data from the next node after curr (head)
+        curr = curr->nextNode; // curr now equals the next node
+        while (curr != headNode) { //keep going until curr = head again
+            curr->data.print(); //then print curr's next data
+            curr = curr->nextNode; // curr now equals the next node
         }
 
     }
